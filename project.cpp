@@ -1,6 +1,12 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
+
+
+
+
+
 
 //function to convert to binary and print  
 void printBinary(int n, int a)
@@ -21,6 +27,12 @@ void printBinary(int n, int a)
     for (int j = i - 1; j >= 0; j--) 
         cout << arr[j]; 
 }
+
+
+
+
+
+
     //union to allocate to the same memory 32bits
 typedef union{
     float f;
@@ -31,6 +43,29 @@ typedef union{
         unsigned int sign : 1;
     }SP;
 }myfloat;
+
+
+
+
+void convertReal(int a){
+long dec = 0, j = 1, r;
+while (a != 0) 
+  {
+   r = a % 10;
+   dec = dec + r * j;
+   j = j * 2;
+   a = a / 10;
+  }
+    myfloat var;
+    var.f = dec;
+    std::cout << var.SP.sign << " ";
+    printBinary(var.SP.exponent, 8);
+    std::cout << " ";
+    printBinary(var.SP.fraction, 23);
+    std::cout << endl;
+
+}
+
 
 
 int main(){
@@ -47,6 +82,12 @@ int main(){
     printBinary(var.SP.fraction, 23);
     std::cout << endl;
     
+    int binary;
+    std::cout << "Enter binary number: " << endl;
+    std::cin >> binary;
+    
+    convertReal(binary);
+
     return 0;
 }
 
