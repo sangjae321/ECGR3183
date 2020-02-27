@@ -140,10 +140,28 @@ void assembinary(vector <string>&v1) {
 			else if (v1[i].compare("BZ") == 0 || v1[i].compare("R19") == 0) {
 				mile << "10011" << " ";
 				bits += 5;
+				if (v1[i].compare("BZ") == 0) {
+					mile << &v1[i+1];
+					bits += sizeof(&v1[i+1]);
+					for (int k = 32; k > bits; k--) {
+						mile << "0";
+					}
+					bits = 0;
+					mile << endl;
+				}
 			}
 			else if (v1[i].compare("BN") == 0 || v1[i].compare("R20") == 0) {
 				mile << "10100" << " ";
 				bits += 5;
+				if (v1[i].compare("BN") == 0) {
+					mile << &v1[i + 1];
+					bits += sizeof(&v1[i + 1]);
+					for (int k = 32; k > bits; k--) {
+						mile << "0";
+					}
+					bits = 0;
+					mile << endl;
+				}
 			}
 			else if (v1[i].compare("Nop") == 0 || v1[i].compare("R21") == 0) {
 				mile << "10101" << " ";
@@ -152,6 +170,33 @@ void assembinary(vector <string>&v1) {
 			else if (v1[i].compare("Halt") == 0 || v1[i].compare("R22") == 0) {
 				mile << "10110" << " ";
 				mile << "000000000000000000000000000" << endl;
+			}
+			else if (v1[i].compare("R23") == 0) {
+				mile << "10111" << " ";
+			}
+			else if (v1[i].compare("R24") == 0) {
+				mile << "11000" << " ";
+			}
+			else if (v1[i].compare("R25") == 0) {
+				mile << "11001" << " ";
+			}
+			else if (v1[i].compare("R26") == 0) {
+				mile << "11010" << " ";
+			}
+			else if (v1[i].compare("R27") == 0) {
+				mile << "11011" << " ";
+			}
+			else if (v1[i].compare("R28") == 0) {
+				mile << "11100" << " ";
+			}
+			else if (v1[i].compare("R29") == 0) {
+				mile << "11101" << " ";
+			}
+			else if (v1[i].compare("R30") == 0) {
+				mile << "11110" << " ";
+			}
+			else if (v1[i].compare("R31") == 0) {
+				mile << "11111" << " ";
 			}
 			else if (v1[i].compare("#")==0) {
 				mile << "100001";
@@ -165,7 +210,7 @@ void assembinary(vector <string>&v1) {
 				bits = 0;
 				spec = 0;
 			}
-			else { //pb: asem.push_back("3")을 else 로 해당된다 인식하고 3의 주소값 반환함
+			/*else { 
 				mile << &v1[i];
 				bits += sizeof(&v1[i]);
 				for (int k = 32; k > bits; k--) {
@@ -173,7 +218,7 @@ void assembinary(vector <string>&v1) {
 				}
 				bits=0;
 				mile << endl;
-			} //case of BN, BZ
+			} //case of BN, BZ */
 			if (bits == 20) {
 				for (int k = 32; k > bits; k--) {
 					mile << "0";
