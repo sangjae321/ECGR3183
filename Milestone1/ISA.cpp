@@ -72,8 +72,21 @@ for (int i = 0; i < inLine.size(); i++){
      
        try{
         a = inLine[i].substr(inLine[i].rfind(' ')+1,inLine[i].length());
-        inLine[i].replace(inLine[i].rfind(' '),inLine[i].length(),"");
-        temp.push_back(a);
+        inLine[i].replace(inLine[i].rfind(' '),inLine[i].length(),"");   
+        if(a[0] == '#'){
+            
+            
+            
+            
+            temp.push_back(a.substr(1, a.length()));
+            temp.push_back(a.substr(0,1));
+            
+        }else{
+        temp.push_back(a);    
+        }
+        
+     
+        
         
      //    cout << a << endl;
        }catch(exception& e){
