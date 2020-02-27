@@ -1,0 +1,15 @@
+--This line is a comment(comments will
+--start with double dashesat any 
+--point, empty spaces or TABs --are ignoredbefore any arguments)
+--Once a double dash is encountered, 
+--no more codewill follow on that line6
+--6 lines of code
+--Move R1, thisline is ignored
+FmulR0, R0,#0       --R0 = R0 * 0
+FaddR0, R0,#3.75    --R0 = R0 + 3.75
+FmulR1, R1,#0       --R1 = R1 + 0
+--Another random comment
+FaddR1,R1,#26.7     --R1 = R1 + 26.7
+FmulR3,R0,R1
+Halt
+0                   --no memory accesses
