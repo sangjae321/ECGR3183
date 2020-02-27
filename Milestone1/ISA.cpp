@@ -46,7 +46,7 @@ for (int i = 0; i < inLine.size(); i++){
         
         
         
-      std::cout << i <<std::endl;
+      cout << i <<endl;
     }
     
     
