@@ -10,8 +10,10 @@ int main(){
     
     string line;
     vector<string>inLine;
-    fstream myfile("Instruction.txt");
+    vector<string>instruct;
     
+    fstream myfile("Instruction.txt");
+//add txt file strings to vector line by line    
     while(getline(myfile,line)){
         inLine.push_back(line);
         
@@ -20,7 +22,7 @@ int main(){
 
 //erase comments
 for (int i = 0; i < inLine.size(); i++){
-    if (inLine[i][0] == '-'){
+    if (inLine[i][0] == '-' || inLine[i][0] == '0'){
         inLine.erase(inLine.begin() + i);
         i--;
     }
@@ -35,9 +37,15 @@ for (int i = 0; i < inLine.size(); i++){
             
             inLine[i].replace(j,inLine[i].size(),"");
         }        
+    }
 }
 
+//erase commas and spaces
+for (int i = 0; i < inLine.size(); i++){
+replace( inLine[i].begin(), inLine[i].end(), ',', '\0');  
+replace( inLine[i].begin(), inLine[i].end(), ' ', '\0');  
 }
+  
 
   
   
@@ -46,7 +54,7 @@ for (int i = 0; i < inLine.size(); i++){
         
         
         
-      std::cout << i <<std::endl;
+      cout << i <<endl;
     }
     
     
