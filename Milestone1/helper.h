@@ -37,12 +37,28 @@ string decimal(double input){
     return out;
 }
 
+string decimal2exponent (int input){
+    vector<int> bits;
+    string out;
+    for(int i = 0; i < 8; i ++){
+        bits.push_back(input % 2);
+        input /= 2;
+    }
+    for(int i = bits.size()-1; i >= 0; i--){
+        out+=(char(bits[i]+48));
+    }
+    return out;
+}
+
 string decimal2ieee(double input){
+    if(input == 0){
+        return "00000000000000000000000000000000";
+    }
     string out;
     string w = whole(input);
     string d = decimal(input);
     int exponent = (w.size()-1) + 127;
-    string exp = whole(exponent);
+    string exp = decimal2exponent(exponent);
     w = w.substr(1, w.size());
     if(input < 0){
         out.append("1");
@@ -56,6 +72,7 @@ string decimal2ieee(double input){
     out = out.substr(0, 32);
     return out;
 }
+
 
 ///IEEE TO DECIMAL
 
@@ -91,7 +108,7 @@ double bin_frac(string input){
 
 double ieee2decimal(string input){
     if(input == "00000000000000000000000000000000"){
-        cout << 0;
+        return 0;
     }
     if(input == "01111111100000000000000000000000"){
         cout << "INF" << endl;
@@ -125,6 +142,8 @@ double ieee2decimal(string input){
     }
 }
 
+
+///Other helper functions
 int binary2decimal (string input){
     int ans = 0;
     for(int i = 0; i < input.size(); i++){
@@ -135,7 +154,36 @@ int binary2decimal (string input){
     return ans;
 }
 
+string decimal2binary (int input){
+    vector<int> bits;
+    string out;
+    while (input > 0){
+        bits.push_back(input % 2);
+        input /= 2;
+    }
+    for(int i = bits.size()-1; i >= 0; i--){
+        out+=(char(bits[i]+48));
+    }
+    return out;
+}
 
+string Pdecimal2binary (int input){
+    vector<int> bits;
+    string out;
+    for(int i = 0; i < 5; i++){
+        bits.push_back(input % 2);
+        input /= 2;
+    }
+    for(int i = bits.size()-1; i >= 0; i--){
+        out+=(char(bits[i]+48));
+    }
+    return out;
+}
+
+
+double stTod (string in){
+    return stod(in);
+}
 
 
 #endif // HELPER_H_INCLUDED
