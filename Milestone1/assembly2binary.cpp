@@ -584,61 +584,71 @@ void assembly2binary(vector<string> a){
             file << endl;
             vec_count++;
         }
+        ///If an empty line is found, simply go to the next instruction
+        else{
+            vec_count++;
+        }
     }
+    file.close();
 }
+///Main function parses through the input file
 int main(){
     ifstream input("testInput.txt");
     vector<string> instructions;
     string line;
+    int inst_count;
     int line_count = 0;
-    int num_inst;
     while(getline(input, line)){
-        if(line_count == 0){
-            num_inst = stoi(line);
-            line_count++;
+        ///Get rid of the commas
+        while(line.find(",") != string::npos){
+            line.erase(line.find(','),1);
         }
-        else if(line_count <= num_inst){
-            ///Get rid of the commas
-            while(line.find(",") != string::npos){
-                line.erase(line.find(','),1);
+        ///Get rid of R's to help with setting registers, Round is taken care of in the method
+        while(line.find("R") != string::npos){
+            line.erase(line.find('R'),1);
+        }
+        while(line.find("LINE") != string::npos){
+            line.erase(line.find("LINE"), 4);
+        }
+        ///Deletes comments
+        while(line.find("-") != string::npos){
+            line.erase(line.find('-'));
+        }
+        ///Trims the end of the line of spaces
+        line.erase(line.find_last_not_of(" ")+1);
+        ///Checks if the line is empty (Meaning the line started with a comment)
+        if(line != ""){
+            ///Gets the number of instructions from the beginning of the file
+            if(line_count == 0){
+                inst_count = stoi(line);
+                line_count++;
             }
-            ///Get rid of R's to help with setting registers, Round is taken care of in the method
-            while(line.find("R") != string::npos){
-                line.erase(line.find('R'),1);
+            else if(line_count <= inst_count){
+                ///Insert instructions into vector
+                while(line.find(" ") != string::npos){
+                    string inst = line.substr(0, line.find(" "));
+                    instructions.push_back(inst);
+                    line.erase(0, line.find(" ")+1);
+                }
+                ///Insert immediate value or last instruction
+                if(line[0] == '#'){
+                    instructions.push_back(line.substr(0,1));
+                    instructions.push_back(line.substr(1));
+                }
+                else{
+                    instructions.push_back(line);
+                }
+                line_count++;
             }
-            while(line.find("LINE") != string::npos){
-                line.erase(line.find("LINE"), 4);
-            }
-            ///Deletes comments
-            while(line.find("-") != string::npos){
-                line.erase(line.find('-'));
-            }
-            ///Trims the end of the line of spaces
-            line.erase(line.find_last_not_of(" ")+1);
-            ///Insert instructions into vector
-            while(line.find(" ") != string::npos){
-                string inst = line.substr(0, line.find(" "));
-                instructions.push_back(inst);
-                line.erase(0, line.find(" ")+1);
-            }
-            ///Insert immediate value or last instruction
-            if(line[0] == '#'){
-                instructions.push_back(line.substr(0,1));
-                instructions.push_back(line.substr(1));
-            }
-            else{
-                instructions.push_back(line);
-            }
-            line_count++;
         }
     }
-    cout << "FOUND INSTRUCTIONS" << endl;
-    cout << "NUM INSTRUC: " << num_inst << endl;
+    input.close();
+    cout << "FOUND " << inst_count << " INSTRUCTIONS" << endl;
     for(int i = 0; i < instructions.size(); i++){
         cout << instructions[i] << endl;
     }
-    input.close();
-    cout << "STARTING ENCODING" << endl;
+    cout << "STARTING ENCODING" << endl << "..." << endl;
     assembly2binary(instructions);
+    cout << "FINISHED ENCODING" << endl;
     return 0;
 }
