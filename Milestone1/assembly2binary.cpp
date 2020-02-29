@@ -13,7 +13,7 @@ void assembly2binary(vector<string> a){
     while(vec_count < a.size()){
         int bits = 0;
         ///Set instruction
-        if(a[vec_count] == "Set"){
+        if(a[vec_count] == "SET"){
             file << "00000";
             bits +=5;
             vec_count++;
@@ -40,7 +40,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Load Instruction
-        else if(a[vec_count] == "Load"){
+        else if(a[vec_count] == "LOAD"){
             file << "00001";
             bits +=5;
             vec_count++;
@@ -67,7 +67,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Store Instruction
-        else if(a[vec_count] == "Store"){
+        else if(a[vec_count] == "STORE"){
             file << "00010";
             bits +=5;
             vec_count++;
@@ -94,7 +94,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Move Instruction
-        else if(a[vec_count] == "Move"){
+        else if(a[vec_count] == "MOVE"){
             file << "00011";
             bits +=5;
             vec_count++;
@@ -121,7 +121,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Add instruction
-        else if(a[vec_count] == "Fadd"){
+        else if(a[vec_count] == "FADD"){
             file << "00100";
             bits +=5;
             vec_count++;
@@ -151,7 +151,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Subtract
-        else if(a[vec_count] == "Fsub"){
+        else if(a[vec_count] == "FSUB"){
             file << "00101";
             bits +=5;
             vec_count++;
@@ -181,7 +181,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Negate
-        else if(a[vec_count] == "Fneg"){
+        else if(a[vec_count] == "FNEG"){
             file << "00110";
             bits +=5;
             vec_count++;
@@ -208,7 +208,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Multiply
-        else if(a[vec_count] == "Fmul"){
+        else if(a[vec_count] == "FMUL"){
             file << "00111";
             bits +=5;
             vec_count++;
@@ -238,7 +238,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Divide
-        else if(a[vec_count] == "Fdiv"){
+        else if(a[vec_count] == "FDIV"){
             file << "01000";
             bits +=5;
             vec_count++;
@@ -268,7 +268,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Floor
-        else if(a[vec_count] == "Floor"){
+        else if(a[vec_count] == "FLOOR"){
             file << "01001";
             bits +=5;
             vec_count++;
@@ -295,7 +295,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Ceiling
-        else if(a[vec_count] == "Ceil"){
+        else if(a[vec_count] == "CEIL"){
             file << "01010";
             bits +=5;
             vec_count++;
@@ -322,7 +322,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Round
-        else if(a[vec_count] == "ound"){
+        else if(a[vec_count] == "OUND"){
             file << "01011";
             bits +=5;
             vec_count++;
@@ -349,7 +349,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Absolute Value
-        else if(a[vec_count] == "Fabs"){
+        else if(a[vec_count] == "FABS"){
             file << "01100";
             bits +=5;
             vec_count++;
@@ -376,7 +376,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Minimum
-        else if(a[vec_count] == "Min"){
+        else if(a[vec_count] == "MIN"){
             file << "01101";
             bits +=5;
             vec_count++;
@@ -406,7 +406,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Maximum
-        else if(a[vec_count] == "Max"){
+        else if(a[vec_count] == "MAX"){
             file << "01110";
             bits +=5;
             vec_count++;
@@ -436,7 +436,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Power
-        else if(a[vec_count] == "Pow"){
+        else if(a[vec_count] == "POW"){
             file << "01111";
             bits +=5;
             vec_count++;
@@ -466,7 +466,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Exponent
-        else if(a[vec_count] == "Exp"){
+        else if(a[vec_count] == "EXP"){
             file << "10000";
             bits +=5;
             vec_count++;
@@ -493,7 +493,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Square Root
-        else if(a[vec_count] == "Sqrt"){
+        else if(a[vec_count] == "SQRT"){
             file << "10001";
             bits +=5;
             vec_count++;
@@ -565,7 +565,7 @@ void assembly2binary(vector<string> a){
             file << endl;
         }
         ///No-op
-        else if(a[vec_count] == "Nop"){
+        else if(a[vec_count] == "NOP"){
             file << "10101";
             bits += 5;
             for(int i = bits; i < 32; i++){
@@ -575,7 +575,7 @@ void assembly2binary(vector<string> a){
             vec_count++;
         }
         ///Halt
-        else if(a[vec_count] == "Halt"){
+        else if(a[vec_count] == "HALT"){
             file << "10110";
             bits += 5;
             for(int i = bits; i < 32; i++){
@@ -587,7 +587,7 @@ void assembly2binary(vector<string> a){
     }
 }
 int main(){
-    ifstream input("assembly.txt");
+    ifstream input("testInput.txt");
     vector<string> instructions;
     string line;
     int line_count = 0;

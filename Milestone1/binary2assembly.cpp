@@ -14,7 +14,7 @@ void binary2assembly(vector<string> a){
     while(vec_count < a.size()){
         ///Set instruction
         if(a[vec_count] == "00000"){
-            file << "Set R";
+            file << "SET R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -31,7 +31,7 @@ void binary2assembly(vector<string> a){
 
         ///Load Instruction
         else if(a[vec_count] == "00001"){
-            file << "Load R";
+            file << "LOAD R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -48,7 +48,7 @@ void binary2assembly(vector<string> a){
 
         ///Store Instruction
         else if(a[vec_count] == "00010"){
-            file << "Store R";
+            file << "STORE R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -65,7 +65,7 @@ void binary2assembly(vector<string> a){
 
         ///Move Instruction
         else if(a[vec_count] == "00011"){
-            file << "Move R";
+            file << "MOVE R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -76,7 +76,7 @@ void binary2assembly(vector<string> a){
 
         ///Add Instruction
         else if(a[vec_count] == "00100"){
-            file << "Fadd R";
+            file << "FADD R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ", R";
             vec_count++;
@@ -95,7 +95,7 @@ void binary2assembly(vector<string> a){
 
         ///Subtract Instruction
         else if(a[vec_count] == "00101"){
-            file << "Fsub R";
+            file << "FSUB R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ", R";
             vec_count++;
@@ -114,7 +114,7 @@ void binary2assembly(vector<string> a){
 
         ///Negate Instruction
         else if(a[vec_count] == "00110"){
-            file << "Fneg R";
+            file << "FNEG R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -131,7 +131,7 @@ void binary2assembly(vector<string> a){
 
         ///Multiply Instruction
         else if(a[vec_count] == "00111"){
-            file << "Fmul R";
+            file << "FMUL R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ", R";
             vec_count++;
@@ -150,7 +150,7 @@ void binary2assembly(vector<string> a){
 
         ///Divide Instruction
         else if(a[vec_count] == "01000"){
-            file << "Fdiv R";
+            file << "FDIV R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ", R";
             vec_count++;
@@ -169,7 +169,7 @@ void binary2assembly(vector<string> a){
 
         ///Floor Instruction
         else if(a[vec_count] == "01001"){
-            file << "Floor R";
+            file << "FLOOR R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -186,7 +186,7 @@ void binary2assembly(vector<string> a){
 
         ///Ceiling Instruction
         else if(a[vec_count] == "01010"){
-            file << "Ceil R";
+            file << "CEIL R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -203,7 +203,7 @@ void binary2assembly(vector<string> a){
 
         ///Round Instruction
         else if(a[vec_count] == "01011"){
-            file << "Round R";
+            file << "ROUND R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -220,7 +220,7 @@ void binary2assembly(vector<string> a){
 
         ///Absolute Value Instruction
         else if(a[vec_count] == "01100"){
-            file << "Fabs R";
+            file << "FABS R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -237,7 +237,7 @@ void binary2assembly(vector<string> a){
 
         ///Minimum Instruction
         else if(a[vec_count] == "01101"){
-            file << "Min R";
+            file << "MIN R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ", R";
             vec_count++;
@@ -256,7 +256,7 @@ void binary2assembly(vector<string> a){
 
         ///Maximum Instruction
         else if(a[vec_count] == "01110"){
-            file << "Max R";
+            file << "MAX R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ", R";
             vec_count++;
@@ -275,7 +275,7 @@ void binary2assembly(vector<string> a){
 
         ///Power Instruction
         else if(a[vec_count] == "01111"){
-            file << "Pow R";
+            file << "POW R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ", R";
             vec_count++;
@@ -294,7 +294,7 @@ void binary2assembly(vector<string> a){
 
         ///Exponent
         else if(a[vec_count] == "10000"){
-            file << "Exp R";
+            file << "EXP R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -311,7 +311,7 @@ void binary2assembly(vector<string> a){
 
         ///Square Root Instruction
         else if(a[vec_count] == "10001"){
-            file << "Sqrt R";
+            file << "SQRT R";
             vec_count++;
             file << binary2decimal(a[vec_count]) << ",";
             vec_count++;
@@ -356,13 +356,13 @@ void binary2assembly(vector<string> a){
 
         ///No-op Instruction
         else if(a[vec_count] == "10101"){
-            file << "Nop" << endl;
+            file << "NOP" << endl;
             vec_count++;
         }
 
         ///Halt Instruction
         else if(a[vec_count] == "10110"){
-            file << "Halt" << endl;
+            file << "HALT" << endl;
             vec_count++;
         }
 
