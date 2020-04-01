@@ -836,6 +836,7 @@ using namespace std;
         }
     }
 
+    ///Gets Memory Data from Assembly Language file
     vector<double> setMem(string input_text_file){
         ifstream input(input_text_file);
         vector<double> mem;
