@@ -202,8 +202,8 @@ string addsub(string a, string b, string operation) {
 
 		string check1 = mantissa_a.substr(0, 5);
 		string check2 = mantissa_b.substr(0, 5);
-		int a = binary2decimal(check1);
-		int b = binary2decimal(check2);
+		int c = binary2decimal(check1);
+		int e = binary2decimal(check2);
 
 		if (signal_a == "1" && signal_b == "0" && exa == exb) {
 
