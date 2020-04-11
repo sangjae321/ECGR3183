@@ -1,7 +1,10 @@
 //requires helper function
+//string a and b is ieee754
 
-string add(string a, string b) {
+
+string addsub(string a, string b, string operation) {
 	string A = a;
+	string op = operation;
 	string signal_a = "";
 	string exponent_a;
 	string mantissa_a;
@@ -27,7 +30,15 @@ string add(string a, string b) {
 		}
 
 	}
-	
+	//flip sign negative plus negative equals positive
+	if (op == "00101") {
+		if(signal_b == "1"){
+			signal_b = "0";
+		}
+	}
+
+
+
 	int exa = binary2decimal(exponent_a) - 127;
 	int exb = binary2decimal(exponent_b) - 127;
 	int exp = 0;
@@ -171,22 +182,50 @@ string add(string a, string b) {
 	//signal after addition
 		if(signal_a == "1" && signal_b == "1"){
 			mainSig = "1";
-		
 		}
 
 		if (signal_a == "1" && exa > exb) {
 			mainSig = "1";
 		}
 
+		if (signal_a == "1" && exa < exb) {
+			mainSig = "0";
+		}
+
 		if (signal_b == "1" && exb > exa) {
 			mainSig = "1";
+		}
+
+		if (signal_b == "1" && exb < exa) {
+			mainSig = "0";
+		}
+
+		string check1 = mantissa_a.substr(0, 5);
+		string check2 = mantissa_b.substr(0, 5);
+		int a = binary2decimal(check1);
+		int b = binary2decimal(check2);
+
+		if (signal_a == "1" && signal_b == "0" && exa == exb) {
+
+			if (a > b) {
+				mainSig = "1";
+			}
+			if (a < b) {
+				mainSig = "0";
+			}		
+		}
+
+		if (signal_a == "0" && signal_b == "1" && exa == exb) {
+			if (a > b) {
+				mainSig = "0";
+			}
+			if (a < b) {
+				mainSig = "1";
+			}
 		}
 
 		string total = mainSig + expb + sum;
 		
 
 	return total;
-
-
 }
-
