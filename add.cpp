@@ -1,8 +1,16 @@
 //requires helper function
-//string a and b is ieee754
+#include <iostream>
+#include <string>
+#include <stdlib.h>
+#include <math.h>
+#include <cmath>
+#include <vector>
+#include<sstream>
 
+//string a and b is ieee 754
+//string operation is the binary for op
 
-string addsub(string a, string b, string operation) {
+string add(string a, string b, string operation) {
 	string A = a;
 	string op = operation;
 	string signal_a = "";
@@ -17,8 +25,10 @@ string addsub(string a, string b, string operation) {
 	for (int i = 0; i < 32; i++) {
 
 		if (i == 0) {
-			signal_a = A[0];
-			signal_b = B[0];
+			char g = A[0];
+			char s = B[0];
+			signal_a = (1, g);
+			signal_b = (1, s);
 		}
 		else if ( i > 0 && i <= 8) {
 			exponent_a += A[i];
@@ -30,7 +40,7 @@ string addsub(string a, string b, string operation) {
 		}
 
 	}
-	//flip sign negative plus negative equals positive
+	
 	if (op == "00101") {
 		if(signal_b == "1"){
 			signal_b = "0";
@@ -41,6 +51,7 @@ string addsub(string a, string b, string operation) {
 
 	int exa = binary2decimal(exponent_a) - 127;
 	int exb = binary2decimal(exponent_b) - 127;
+
 	int exp = 0;
 	int distance = 0;
 	//alignment
@@ -91,19 +102,19 @@ string addsub(string a, string b, string operation) {
 	//complement of 2 if it's negative
 	if (signal_a == "1" && signal_b == "0") {
 		for (int i = 0; i < mantissa_a.length(); i++) {
+			
 			if (mantissa_a[i] == '1') {
-				mantissa_a[i] = '0';			
+				mantissa_a[i] = '0';	
+			
 			}
 			else {
 				mantissa_a[i] = '1';
 			}
 			
 		}
-		if (mantissa_a[23] == '0')
-		{
-			mantissa_a[23] = '1';
-		}
-		else {
+
+		
+
 
 			reverse(mantissa_a.begin(), mantissa_a.end());
 			reverse(one.begin(), one.end());
@@ -117,7 +128,7 @@ string addsub(string a, string b, string operation) {
 			if (carry) summi.push_back('1');
 			reverse(summi.begin(), summi.end());
 			mantissa_a = summi;
-		}
+		
 		
 	}
 
@@ -131,11 +142,7 @@ string addsub(string a, string b, string operation) {
 			}
 			
 		}
-		if (mantissa_b[23] == '0')
-		{
-			mantissa_b[23] = '1';
-		}
-		else {
+		
 
 			reverse(mantissa_a.begin(), mantissa_a.end());
 			reverse(one.begin(), one.end());
@@ -150,7 +157,7 @@ string addsub(string a, string b, string operation) {
 			reverse(summi.begin(), summi.end());
 
 			mantissa_b = summi;
-		}
+		
 
 	
 	}
@@ -168,16 +175,7 @@ string addsub(string a, string b, string operation) {
 		if (carry) sum.push_back('1');
 		reverse(sum.begin(), sum.end());
 		
-		if (sum.length() > 24) {
-				
-			sum.replace(0, 1, "");
-			sum.erase(23, distance);
-			exp += 1;
-
-		}
 		
-		exp = 127 + exp;
-		expb = decimal2binary(exp);
 
 	//signal after addition
 		if(signal_a == "1" && signal_b == "1"){
@@ -196,7 +194,7 @@ string addsub(string a, string b, string operation) {
 			mainSig = "1";
 		}
 
-		if (signal_b == "1" && exb < exa) {
+	    if (signal_b == "1" && exb < exa) {
 			mainSig = "0";
 		}
 
@@ -205,7 +203,7 @@ string addsub(string a, string b, string operation) {
 		int c = binary2decimal(check1);
 		int e = binary2decimal(check2);
 
-		if (signal_a == "1" && signal_b == "0" && exa == exb) {
+	    if (signal_a == "1" && signal_b == "0" && exa == exb) {
 
 			if (a > b) {
 				mainSig = "1";
@@ -223,9 +221,32 @@ string addsub(string a, string b, string operation) {
 				mainSig = "1";
 			}
 		}
+		
+		if (sum.length() > 23) {
+			
+			sum.replace(0, 1, "");
+			sum.erase(23, distance);
+			if (mainSig == "0") {
+				
+				exp = exp + 1;
+			}
+			if (mainSig == "1") {
+				
+				exp = exp - 1;
+				
+			}
+
+		}
+		
+		exp = 127 + exp;
+		expb = decimal2binary(exp);
+
 
 		string total = mainSig + expb + sum;
 		
 
 	return total;
+
+
 }
+
