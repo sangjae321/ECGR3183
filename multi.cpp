@@ -136,10 +136,6 @@ string multi(string a, string b) {
 
 	string c = mainSig + finExp + mantissa_c;
 
-	cout << c << endl;
-	
-	
-
 
 
 	return c;
